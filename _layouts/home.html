@@ -1,131 +1,484 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
 
-{%- include header.html -%}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% seo %}
+  <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | relative_url }}">
+  <link rel="icon" type="image/x-icon" href="{{ '/assets/favicon.ico' | relative_url }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --violet: #7B2FBE;
+      --magenta: #E6197E;
+      --lime: #C6F221;
+      --orange: #FF6B2B;
+      --abyss: #1E1235;
+      --deep: #160D28;
+      --surface: #261A3D;
+      --border: #382A50;
+      --text: #F0E6FF;
+      --text-dim: #9185A1;
+      --white: #FFFFFF;
+    }
 
-<!-- Hero Section -->
-<section class="hero">
-  <div class="hero-content">
-    <h1 class="hero-title">{{ site.title }}</h1>
-    <p class="hero-tagline">{{ site.company.tagline }}</p>
-    <p class="hero-mission">{{ site.company.mission }}</p>
-    <div class="hero-cta">
-      <a href="#products" class="btn btn-primary">Explore Our Products</a>
-      <a href="#contact" class="btn btn-secondary">Get in Touch</a>
-    </div>
-  </div>
-</section>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<!-- Products Section -->
-<section id="products" class="products-section">
-  <div class="container">
-    <h2 class="section-title">Our Products</h2>
-    <div class="products-grid">
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--abyss);
+      color: var(--text);
+      font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .hero-symbol {
+      width: min(40vw, 200px);
+      margin-bottom: 2rem;
+    }
+
+    .hero-symbol svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .hero-name {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-tagline {
+      font-size: clamp(0.9rem, 2vw, 1.125rem);
+      color: var(--text-dim);
+      margin-bottom: 2.5rem;
+      max-width: 400px;
+    }
+
+    .hero-nav {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .hero-nav a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .hero-nav a:hover {
+      color: var(--lime);
+    }
+
+    /* ── Sections ── */
+    .section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+    }
+
+    .section-label {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .section-text {
+      color: var(--text);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      max-width: 600px;
+    }
+
+    .divider {
+      max-width: 800px;
+      margin: 0 auto;
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── Products ── */
+    .product-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+
+    .product-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .product-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .product-logo {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .product-logo svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .product-status {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+      background: rgba(198, 242, 33, 0.12);
+      color: var(--lime);
+    }
+
+    .product-status.status-live {
+      background: rgba(198, 242, 33, 0.15);
+      color: var(--lime);
+    }
+
+    .product-status.status-dev {
+      background: rgba(123, 47, 190, 0.2);
+      color: #B87FFF;
+      font-size: 0.8rem;
+    }
+
+    .product-link {
+      display: inline-block;
+      margin-top: 1.25rem;
+      color: var(--lime);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .product-link:hover {
+      color: var(--white);
+    }
+
+    .product-description {
+      color: var(--text);
+      margin-bottom: 1.25rem;
+      line-height: 1.7;
+    }
+
+    .product-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.5rem;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .product-feature {
+      color: var(--text);
+      font-size: 1rem;
+      padding-left: 1.25rem;
+      position: relative;
+    }
+
+    .product-feature::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--violet);
+    }
+
+    /* ── About ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .tenet-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+
+    .tenet-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--lime);
+      margin-bottom: 0.75rem;
+    }
+
+    .tenet-text {
+      color: var(--text);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* ── Contact ── */
+    .contact-link {
+      display: inline-block;
+      color: var(--lime);
+      text-decoration: none;
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-top: 1.5rem;
+      transition: color 0.2s;
+    }
+
+    .contact-link:hover {
+      color: var(--white);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.875rem;
+      color: var(--text-dim);
+    }
+
+    .footer a {
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer a:hover {
+      color: var(--lime);
+    }
+
+    /* ── Skip link ── */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 1rem;
+      padding: 0.75rem 1.25rem;
+      background: var(--lime);
+      color: var(--abyss);
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      border-radius: 0 0 8px 8px;
+      z-index: 9999;
+      transition: top 0.15s;
+    }
+
+    .skip-link:focus {
+      top: 0;
+    }
+
+    /* ── Focus styles ── */
+    :focus-visible {
+      outline: 3px solid var(--lime);
+      outline-offset: 3px;
+      border-radius: 3px;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 640px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-nav {
+        gap: 1.25rem;
+      }
+
+      .footer {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <main id="main-content">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-symbol" role="img" aria-label="{{ site.title }}">
+        <svg viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <mask id="hero-violet-interlock">
+              <rect width="220" height="220" fill="black" />
+              <rect x="32" y="32" width="132" height="132" rx="40" fill="white" />
+              <rect x="82" y="82" width="48" height="48" rx="16" fill="black" />
+              <rect x="118" y="104" width="72" height="84" rx="28" fill="black" />
+            </mask>
+            <mask id="hero-lime-interlock">
+              <rect width="220" height="220" fill="black" />
+              <rect x="88" y="88" width="100" height="100" rx="32" fill="white" />
+              <rect x="112" y="112" width="40" height="40" rx="14" fill="black" />
+              <rect x="70" y="70" width="56" height="56" rx="18" fill="black" />
+            </mask>
+          </defs>
+          <rect width="220" height="220" fill="#7B2FBE" mask="url(#hero-violet-interlock)" />
+          <rect width="220" height="220" fill="#C6F221" mask="url(#hero-lime-interlock)" />
+        </svg>
+      </div>
+      <h1 class="hero-name">{{ site.title }}</h1>
+      <p class="hero-tagline">{{ site.company.tagline }}</p>
+      <nav class="hero-nav" aria-label="Main">
+        <a href="#products">Products</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </section>
+
+    <!-- Products -->
+    <hr class="divider">
+    <section id="products" class="section" aria-labelledby="products-heading">
+      <h2 id="products-heading" class="section-label">Products</h2>
+
       {%- for product in site.products -%}
       <div class="product-card">
         <div class="product-header">
+          {%- if product.logo == "landsteward" -%}
+          <div class="product-logo" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none">
+              <rect width="40" height="40" rx="9" fill="#15803d" />
+              <path
+                d="M 20 33 L 20 27 C 22 26.5, 25 25, 26.5 23 C 28 21, 28 19.5, 26.5 18 C 28.5 17.5, 30 15.5, 29 13 C 28 10.5, 25.5 10, 24 12 C 23.5 10.5, 22.5 8, 21 7 C 20.5 6.6, 20 7, 20 7 C 20 7, 19.5 6.6, 19 7 C 17.5 8, 16.5 10.5, 16 12 C 14.5 10, 12 10.5, 11 13 C 10 15.5, 11.5 17.5, 13.5 18 C 12 19.5, 12 21, 13.5 23 C 15 25, 18 26.5, 20 27 Z"
+                fill="white" />
+            </svg>
+          </div>
+          {%- elsif product.logo == "ekhaya" -%}
+          <div class="product-logo" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+              <rect width="48" height="48" rx="10" fill="hsl(21,60%,38%)" />
+              <path d="M24 8 L40 24 H8 Z" fill="hsl(20,100%,97%)" />
+              <path d="M8 24 L40 24 L38 27 H10 Z" fill="hsl(22,45%,16%)" />
+              <path d="M10 27 Q10 40 24 40 Q38 40 38 27 Z" fill="hsl(20,100%,97%)" />
+              <path d="M19 40 L19 35 Q24 30 29 35 L29 40 Z" fill="hsl(21,60%,38%)" />
+            </svg>
+          </div>
+          {%- endif -%}
           <h3 class="product-name">{{ product.name }}</h3>
-          <span class="product-status status-{{ product.status | downcase | replace: ' ', '-' }}">
-            {{ product.status }}
-          </span>
+          {%- if product.status == "Live" -%}
+          <span class="product-status status-live">{{ product.status }}</span>
+          {%- else -%}
+          <span class="product-status status-dev">{{ product.status }}</span>
+          {%- endif -%}
         </div>
         <p class="product-description">{{ product.description }}</p>
-        <div class="product-features">
-          <h4>Key Features:</h4>
-          <ul>
-            {%- for feature in product.features -%}
-            <li>{{ feature }}</li>
-            {%- endfor -%}
-          </ul>
-        </div>
-        <div class="product-actions">
-          {%- if product.status == "In Development" -%}
-          <button class="btn btn-outline" disabled>Coming Soon</button>
-          {%- else -%}
-          <a href="#" class="btn btn-primary">Learn More</a>
-          {%- endif -%}
-        </div>
+        <ul class="product-features">
+          {%- for feature in product.features -%}
+          <li class="product-feature">{{ feature }}</li>
+          {%- endfor -%}
+        </ul>
+        {%- if product.url -%}
+        <a href="{{ product.url }}" class="product-link" target="_blank" rel="noopener"
+          aria-label="Visit {{ product.name }} (opens in new tab)">Visit {{ product.name }} →</a>
+        {%- endif -%}
       </div>
       {%- endfor -%}
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- About Section -->
-<section id="about" class="about-section">
-  <div class="container">
-    <div class="about-content">
-      <div class="about-text">
-        <h2 class="section-title">About Onobumba</h2>
-        <p>We are a technology company dedicated to creating software solutions that empower
-          businesses to thrive in the digital age. Our team of experienced developers and business analysts work
-          tirelessly to deliver software that is both robust and user-friendly.</p>
-        <p>With a focus on reliability, scalability, and exceptional user experience, we build products that grow with
-          your business and adapt to your evolving needs.</p>
-      </div>
-      <div class="about-stats">
-        <div class="stat">
-          <h3>2+</h3>
-          <p>Years of Experience</p>
+    <!-- About -->
+    <hr class="divider">
+    <section id="about" class="section" aria-labelledby="about-heading">
+      <h2 id="about-heading" class="section-label">About</h2>
+      <div class="about-grid">
+        <div class="tenet-card">
+          <h3 class="tenet-title">Imagine</h3>
+          <p class="tenet-text">There's always a better way to do something. We like finding it.</p>
         </div>
-        <div class="stat">
-          <h3>1+</h3>
-          <p>Products in Development</p>
+        <div class="tenet-card">
+          <h3 class="tenet-title">Build</h3>
+          <p class="tenet-text">Making things is how we think. Software is just the medium.</p>
         </div>
-        <div class="stat">
-          <h3>100%</h3>
-          <p>Customer Focused</p>
+        <div class="tenet-card">
+          <h3 class="tenet-title">Play</h3>
+          <p class="tenet-text">Not everything needs to be serious. Some of the best ideas come from having fun.</p>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- Blog Preview Section -->
-{%- if site.posts.size > 0 -%}
-<section id="blog" class="blog-section">
-  <div class="container">
-    <h2 class="section-title">Latest Insights</h2>
-    <div class="blog-grid">
-      {%- assign recent_posts = site.posts | limit: 3 -%}
-      {%- for post in recent_posts -%}
-      <article class="blog-card">
-        <div class="blog-meta">
-          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
-          {%- if post.categories.size > 0 -%}
-          <span class="blog-category">{{ post.categories | first | capitalize }}</span>
-          {%- endif -%}
-        </div>
-        <h3 class="blog-title">
-          <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-        </h3>
-        <p class="blog-excerpt">{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
-        <a href="{{ post.url | relative_url }}" class="blog-read-more">Read More →</a>
-      </article>
-      {%- endfor -%}
-    </div>
-    <div class="blog-cta">
-      <a href="/blog" class="btn btn-outline">View All Posts</a>
-    </div>
-  </div>
-</section>
-{%- endif -%}
+    <!-- Contact -->
+    <hr class="divider">
+    <section id="contact" class="section" aria-labelledby="contact-heading">
+      <p class="section-label">Contact</p>
+      <h2 id="contact-heading" class="section-title">Get in touch</h2>
+      <p class="section-text">
+        Got a question, idea, or just want to say hello?
+      </p>
+      <a href="mailto:{{ site.email }}" class="contact-link">{{ site.email }} →</a>
+    </section>
 
-<!-- Contact Section -->
-<section id="contact" class="contact-section">
-  <div class="container">
-    <h2 class="section-title">Get in Touch</h2>
-    <div class="contact-content">
-      <div class="contact-info">
-        <p>Ready to transform your business with our tailored solutions? We'd love to hear from you.</p>
-        <div class="contact-details">
-          <div class="contact-item">
-            <strong>Email:</strong> {{ site.email }}
-          </div>
-        </div>
-        {%- include social.html -%}
-      </div>
-    </div>
-  </div>
-</section>
+  </main>
+
+  <!-- Footer -->
+  <hr class="divider">
+  <footer class="footer">
+    <span>&copy; {{ "now" | date: "%Y" }} {{ site.title }}</span>
+    <a href="/privacy/">Privacy</a>
+  </footer>
+
+</body>
+
+</html>

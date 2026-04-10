@@ -1,1 +1,0 @@
-Following is an attempt to make the minmax algorithm understood

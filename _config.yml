@@ -20,24 +20,42 @@
 
 title: Onobumba
 email: info@onobumba.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Onobumba - Software solutions for growing businesses. 
-  Streamline your operations with our reliable software products.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: onobumbacom
-github_username:  onobumba
-linkedin_username: company/onobumba
+description: >-
+  A maker-led studio.
+baseurl: ""
+url: ""
 
-# Company information
+# Company
 company:
-  tagline: "Software Solutions for Growing Businesses"
-  mission: "Empowering businesses through effective technology solutions"
-  
+  tagline: "Imagine. Build. Play."
+  mission: "Make Cool Things."
+
 # Products
 products:
+  - name: "LandSteward"
+    description: "Free eligibility checker and income calculator for English farmers. Check which SFI26 actions your farm qualifies for and estimate your annual income."
+    status: "Live"
+    url: "https://landsteward.co.uk"
+    logo: "landsteward"
+    features:
+      - "SFI26 eligibility checking"
+      - "Annual income estimation"
+      - "Action comparison tools"
+      - "Free to use"
+
+  - name: "eKhaya"
+    description: "All-in-one property management system for South African hotels and guesthouses. Simpler and more affordable than the alternatives."
+    status: "Live"
+    url: "https://ekhaya.app"
+    logo: "ekhaya"
+    features:
+      - "Guest & reservation management"
+      - "Invoicing & payments"
+      - "Housekeeping management"
+      - "Multi-property support"
+
   - name: "Imvuzo"
-    description: "Comprehensive payroll management software"
+    description: "Comprehensive payroll management software for South African businesses."
     status: "In Development"
     features:
       - "Automated payroll processing"
@@ -48,8 +66,6 @@ products:
 # Build settings
 theme: minima
 plugins:
-  - jekyll-feed
-  - jekyll-sitemap
   - jekyll-seo-tag
 
 # Sass configuration
