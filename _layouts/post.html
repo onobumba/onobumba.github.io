@@ -49,6 +49,28 @@ layout: default
 </article>
 
 <style>
+    :root {
+        --pink: #fd64b3;
+        --sky: #4baaff;
+        --ink: #111111;
+        --paper: #ffffff;
+        --sun: #ffd84d;
+        --mint: #b6f28a;
+    }
+
+    body {
+        background: var(--sky);
+        color: var(--ink);
+        font-family: 'Nunito', system-ui, sans-serif;
+        line-height: 1.7;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+
     .post-page {
         padding: 2rem 0 4rem;
         min-height: 80vh;
@@ -58,7 +80,7 @@ layout: default
         text-align: center;
         margin-bottom: 3rem;
         padding-bottom: 2rem;
-        border-bottom: 1px solid #e5e7eb;
+        border-bottom: 3px solid var(--ink);
     }
 
     .post-meta {
@@ -68,129 +90,152 @@ layout: default
         gap: 1rem;
         margin-bottom: 1.5rem;
         font-size: 0.9rem;
-        color: #6b7280;
+        color: var(--ink);
+        font-weight: 600;
         flex-wrap: wrap;
     }
 
     .post-category {
-        background-color: #6366f1;
-        color: white;
-        padding: 4px 12px;
-        border-radius: 16px;
+        background: var(--sun);
+        color: var(--ink);
+        padding: 0.25rem 0.75rem;
+        border-radius: 100px;
+        border: 2px solid var(--ink);
+        box-shadow: 2px 2px 0 var(--ink);
         font-size: 0.8rem;
-        font-weight: 500;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
     }
 
     .post-title {
-        font-size: 2.5rem;
-        line-height: 1.2;
-        color: #1f2937;
+        font-family: 'Lilita One', cursive;
+        font-size: clamp(2rem, 5vw, 3rem);
+        font-weight: 400;
+        line-height: 1.15;
+        color: var(--pink);
+        text-shadow: 3px 3px 0 var(--ink);
         max-width: 800px;
         margin: 0 auto;
     }
 
+    /* White sticker card for post body */
     .post-content {
         max-width: 700px;
         margin: 0 auto;
-        line-height: 1.7;
+        line-height: 1.8;
+        background: var(--paper);
+        border: 3px solid var(--ink);
+        border-radius: 20px;
+        padding: 2.5rem;
+        box-shadow: 6px 6px 0 var(--ink);
+    }
 
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            color: #1f2937;
-        }
+    .post-content h1,
+    .post-content h2,
+    .post-content h3,
+    .post-content h4,
+    .post-content h5,
+    .post-content h6 {
+        font-family: 'Lilita One', cursive;
+        font-weight: 400;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        color: var(--ink);
+    }
 
-        h2 {
-            font-size: 1.8rem;
-            border-bottom: 2px solid #e5e7eb;
-            padding-bottom: 0.5rem;
-        }
+    .post-content h2 {
+        font-size: 1.75rem;
+        border-bottom: 2px solid var(--ink);
+        padding-bottom: 0.5rem;
+    }
 
-        h3 {
-            font-size: 1.4rem;
-        }
+    .post-content h3 {
+        font-size: 1.375rem;
+    }
 
-        p {
-            margin-bottom: 1.5rem;
-            color: #374151;
-        }
+    .post-content p {
+        margin-bottom: 1.5rem;
+        color: var(--ink);
+    }
 
-        a {
-            color: #6366f1;
+    .post-content a {
+        color: var(--pink);
+        font-weight: 700;
+        text-decoration: none;
+    }
 
-            &:hover {
-                color: #4f46e5;
-                text-decoration: underline;
-            }
-        }
+    .post-content a:hover {
+        text-decoration: underline;
+        color: var(--ink);
+    }
 
-        ul,
-        ol {
-            margin-bottom: 1.5rem;
-            padding-left: 1.5rem;
+    .post-content ul,
+    .post-content ol {
+        margin-bottom: 1.5rem;
+        padding-left: 1.5rem;
+    }
 
-            li {
-                margin-bottom: 0.5rem;
-                color: #374151;
-            }
-        }
+    .post-content li {
+        margin-bottom: 0.5rem;
+        color: var(--ink);
+    }
 
-        blockquote {
-            border-left: 4px solid #6366f1;
-            padding-left: 1.5rem;
-            margin: 2rem 0;
-            font-style: italic;
-            color: #4b5563;
-        }
+    .post-content blockquote {
+        border-left: 4px solid var(--pink);
+        padding-left: 1.5rem;
+        margin: 2rem 0;
+        font-style: italic;
+        color: var(--ink);
+        opacity: 0.8;
+    }
 
-        code {
-            background-color: #f3f4f6;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            color: #dc2626;
-        }
+    .post-content code {
+        background: var(--sky);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        color: var(--ink);
+        border: 1px solid var(--ink);
+    }
 
-        pre {
-            background-color: #1f2937;
-            color: #f9fafb;
-            padding: 1.5rem;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin: 1.5rem 0;
+    .post-content pre {
+        background: var(--ink);
+        color: var(--paper);
+        padding: 1.5rem;
+        border-radius: 12px;
+        border: 3px solid var(--ink);
+        overflow-x: auto;
+        margin: 1.5rem 0;
+    }
 
-            code {
-                background: none;
-                color: inherit;
-                padding: 0;
-            }
-        }
+    .post-content pre code {
+        background: none;
+        color: inherit;
+        padding: 0;
+        border: none;
+    }
 
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin: 2rem 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+    .post-content img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 12px;
+        margin: 2rem 0;
+        border: 3px solid var(--ink);
+        box-shadow: 4px 4px 0 var(--ink);
     }
 
     .post-footer {
         max-width: 700px;
         margin: 3rem auto 0;
         padding-top: 2rem;
-        border-top: 1px solid #e5e7eb;
+        border-top: 3px solid var(--ink);
     }
 
     .post-navigation {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 2rem;
+        gap: 1.5rem;
         margin-bottom: 2rem;
     }
 
@@ -198,15 +243,19 @@ layout: default
     .next-post {
         display: flex;
         flex-direction: column;
-        padding: 1rem;
-        border-radius: 8px;
-        background-color: #f9fafb;
+        padding: 1.25rem;
+        border-radius: 16px;
+        background: var(--paper);
+        border: 3px solid var(--ink);
+        box-shadow: 4px 4px 0 var(--ink);
         text-decoration: none;
-        transition: background-color 0.2s ease;
+        transition: box-shadow 0.15s, transform 0.15s;
+    }
 
-        &:hover {
-            background-color: #f3f4f6;
-        }
+    .prev-post:hover,
+    .next-post:hover {
+        box-shadow: 1px 1px 0 var(--ink);
+        transform: translate(3px, 3px);
     }
 
     .next-post {
@@ -214,18 +263,45 @@ layout: default
     }
 
     .nav-direction {
-        font-size: 0.9rem;
-        color: #6b7280;
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: var(--pink);
         margin-bottom: 0.25rem;
     }
 
     .nav-title {
-        color: #1f2937;
-        font-weight: 500;
+        color: var(--ink);
+        font-weight: 700;
     }
 
     .back-to-blog {
         text-align: center;
+    }
+
+    .btn.btn-outline {
+        display: inline-block;
+        font-family: 'Lilita One', cursive;
+        font-size: 1rem;
+        font-weight: 400;
+        color: var(--ink);
+        background: var(--paper);
+        border: 2.5px solid var(--ink);
+        border-radius: 100px;
+        padding: 0.5rem 1.5rem;
+        text-decoration: none;
+        box-shadow: 3px 3px 0 var(--ink);
+        transition: box-shadow 0.15s, transform 0.15s;
+    }
+
+    .btn.btn-outline:hover {
+        box-shadow: 1px 1px 0 var(--ink);
+        transform: translate(2px, 2px);
+    }
+
+    :focus-visible {
+        outline: 3px solid var(--sun);
+        outline-offset: 3px;
+        border-radius: 3px;
     }
 
     @media (max-width: 768px) {
@@ -245,6 +321,11 @@ layout: default
 
         .next-post {
             text-align: left;
+        }
+
+        .post-content {
+            padding: 1.5rem;
+            box-shadow: 4px 4px 0 var(--ink);
         }
     }
 </style>
