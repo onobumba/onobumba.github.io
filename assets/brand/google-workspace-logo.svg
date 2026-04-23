@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 132" width="320" height="132">
+  <defs>
+    <!-- O-glyph mask (100×100 coordinate space) -->
+    <mask id="o-glyph">
+      <rect width="100" height="100" fill="white"/>
+      <rect x="27" y="27" width="46" height="46" rx="15" fill="black"/>
+    </mask>
+  </defs>
+
+  <!-- Background -->
+  <rect width="320" height="132" fill="#4baaff"/>
+
+  <!-- O glyph group, scaled to 70×70, centred vertically at y=31 (top) -->
+  <g transform="translate(10, 31) scale(0.7)">
+    <!-- ink shadow +4,+4 -->
+    <rect x="4" y="4" width="100" height="100" rx="30" fill="#111111" mask="url(#o-glyph)"/>
+    <!-- pink glyph -->
+    <rect x="0" y="0" width="100" height="100" rx="30" fill="#fd64b3" mask="url(#o-glyph)"/>
+  </g>
+
+  <!-- ONOBUMBA: ink shadow (shift +3,+3) -->
+  <text
+    x="92" y="88"
+    font-family="Arial Black, Arial, sans-serif"
+    font-weight="900"
+    font-size="56"
+    fill="#111111"
+    textLength="222"
+    lengthAdjust="spacingAndGlyphs"
+  >ONOBUMBA</text>
+
+  <!-- ONOBUMBA: pink, offset −3,−3 from shadow -->
+  <text
+    x="89" y="85"
+    font-family="Arial Black, Arial, sans-serif"
+    font-weight="900"
+    font-size="56"
+    fill="#fd64b3"
+    textLength="222"
+    lengthAdjust="spacingAndGlyphs"
+  >ONOBUMBA</text>
+</svg>
