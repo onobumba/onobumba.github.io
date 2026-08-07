@@ -1,0 +1,163 @@
+:root {
+  --pink: #fd64b3;
+  --sky: #4baaff;
+  --ink: #111111;
+  --paper: #ffffff;
+  --sun: #ffd84d;
+  --mint: #b6f28a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--sky);
+  color: var(--ink);
+  font-family: 'Nunito', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.app-page {
+  min-height: 100vh;
+  padding: 3rem 0;
+}
+
+.app-page .container {
+  width: min(720px, calc(100% - 3rem));
+  margin: 0 auto;
+}
+
+.page-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.sticker-link {
+  display: inline-block;
+  padding: 0.3rem 0.875rem;
+  border: 2px solid var(--ink);
+  border-radius: 100px;
+  background: var(--paper);
+  box-shadow: 2px 2px 0 var(--ink);
+  color: var(--ink);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+
+.sticker-link:hover {
+  box-shadow: 0 0 0 var(--ink);
+  transform: translate(2px, 2px);
+}
+
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.page-title {
+  margin: 0 0 0.35rem;
+  color: var(--pink);
+  font-family: 'Lilita One', cursive;
+  font-size: clamp(2rem, 8vw, 3rem);
+  font-weight: 400;
+  line-height: 1.05;
+  text-shadow: 3px 3px 0 var(--ink);
+}
+
+.page-subtitle {
+  max-width: 600px;
+  margin: 0;
+  font-weight: 600;
+}
+
+.content-card {
+  padding: 2.5rem;
+  border: 3px solid var(--ink);
+  border-radius: 20px;
+  background: var(--paper);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+.content-section {
+  margin-bottom: 2rem;
+}
+
+.content-section:last-child {
+  margin-bottom: 0;
+}
+
+.content-section h2 {
+  margin: 0 0 0.6rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--ink);
+  font-family: 'Lilita One', cursive;
+  font-size: 1.35rem;
+  font-weight: 400;
+}
+
+.content-section h3 {
+  margin: 1rem 0 0.25rem;
+  color: var(--pink);
+  font-size: 1rem;
+}
+
+.content-section p,
+.content-section ul {
+  margin: 0 0 0.75rem;
+}
+
+.content-section ul {
+  padding-left: 1.4rem;
+}
+
+.content-section a {
+  color: #9b155c;
+  font-weight: 800;
+}
+
+.contact-panel {
+  padding: 1.25rem;
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  background: var(--sun);
+}
+
+.page-footer {
+  margin-top: 2rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+:focus-visible {
+  outline: 3px solid var(--sun);
+  outline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+  .app-page {
+    padding: 2rem 0;
+  }
+
+  .app-page .container {
+    width: min(100% - 2rem, 720px);
+  }
+
+  .content-card {
+    padding: 1.5rem;
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+}

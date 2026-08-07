@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {% seo %}
   <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | relative_url }}">
-  <link rel="icon" type="image/x-icon" href="{{ '/assets/favicon.ico' | relative_url }}">
   <link rel="apple-touch-icon" href="{{ '/assets/apple-touch-icon.svg' | relative_url }}">
   <meta name="theme-color" content="#4baaff">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -508,7 +507,11 @@
   <hr class="divider">
   <footer class="footer">
     <span>&copy; {{ "now" | date: "%Y" }} {{ site.title }}</span>
-    <a href="/privacy/">Privacy</a>
+    <span>
+      <a href="/marabaraba/support/">Marabaraba Support</a>
+      &nbsp;&middot;&nbsp;
+      <a href="/privacy/">Privacy</a>
+    </span>
   </footer>
 
 </body>
