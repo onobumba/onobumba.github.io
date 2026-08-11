@@ -21,7 +21,7 @@
 title: Onobumba
 email: info@onobumba.com
 description: >-
-  A maker-led studio.
+  An independent product studio making useful software with imagination and play.
 baseurl: ""
 url: ""
 
@@ -37,6 +37,7 @@ products:
     status: "Live"
     url: "https://landsteward.co.uk"
     logo: "landsteward"
+    tone: "field"
     features:
       - "SFI26 eligibility checking"
       - "Annual income estimation"
@@ -48,6 +49,7 @@ products:
     status: "Live"
     url: "https://ekhaya.app"
     logo: "ekhaya"
+    tone: "clay"
     features:
       - "Guest & reservation management"
       - "Invoicing & payments"
@@ -57,11 +59,25 @@ products:
   - name: "Imvuzo"
     description: "Comprehensive payroll management software for South African businesses."
     status: "In Development"
+    logo: "imvuzo"
+    tone: "violet"
     features:
       - "Automated payroll processing"
       - "Tax compliance management"
       - "Employee self-service portal"
       - "Real-time reporting and analytics"
+
+  - name: "Marabaraba"
+    description: "A thoughtful digital edition of the classic strategy board game, designed for offline play without ads or subscriptions."
+    status: "Live"
+    url: "/marabaraba/support/"
+    logo: "marabaraba"
+    tone: "sun"
+    features:
+      - "Play entirely offline"
+      - "One-time purchase"
+      - "No ads or subscriptions"
+      - "Simple, focused play"
 
 # Build settings
 theme: minima

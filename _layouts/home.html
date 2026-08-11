@@ -10,8 +10,7 @@
   <meta name="theme-color" content="#4baaff">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@400;600;700&family=Space+Grotesk:wght@600;700&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --pink: #fd64b3;
@@ -20,12 +19,47 @@
       --paper: #ffffff;
       --sun: #ffd84d;
       --mint: #b6f28a;
+      --field: #2d7a5f;
+      --clay: #e76f51;
+      --violet: #6d5bd0;
+      --border: 3px solid var(--ink);
+      --shadow-sm: 3px 3px 0 var(--ink);
+      --shadow-md: 5px 5px 0 var(--ink);
+      --shadow-lg: 7px 7px 0 var(--ink);
+      --display: 'Lilita One', cursive;
+      --body: 'Space Grotesk', system-ui, sans-serif;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
     }
 
     * {
       margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-width: 320px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
     }
 
     .visually-hidden {
@@ -40,39 +74,33 @@
       border: 0;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: var(--sky);
+    .skip-link {
+      position: fixed;
+      top: -100%;
+      left: 1rem;
+      z-index: 100;
+      padding: 0.75rem 1.25rem;
+      background: var(--sun);
+      border: var(--border);
+      border-radius: 0 0 12px 12px;
+      box-shadow: var(--shadow-sm);
       color: var(--ink);
-      font-family: 'Nunito', system-ui, sans-serif;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
+      font-weight: 700;
+      text-decoration: none;
     }
 
-    /* ── Hero ── */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem;
+    .skip-link:focus {
+      top: 0;
     }
 
-    .hero-brand {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 1.25rem;
+    :focus-visible {
+      outline: 4px solid var(--sun);
+      outline-offset: 4px;
     }
 
     .brand-logo {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
       color: var(--pink);
       line-height: 1;
     }
@@ -81,542 +109,957 @@
       gap: 0.75rem;
     }
 
-    .brand-logo--large.brand-logo--horizontal {
-      gap: 1.25rem;
-    }
-
     .brand-logo__mark {
-      display: block;
-      flex: 0 0 auto;
       width: 40px;
       height: 40px;
+      flex: 0 0 auto;
     }
 
-    .brand-logo--mark.brand-logo--small .brand-logo__mark {
-      width: 32px;
-      height: 32px;
-    }
-
-    .brand-logo--large .brand-logo__mark {
-      width: 96px;
-      height: 96px;
+    .brand-logo--small .brand-logo__mark,
+    .brand-logo--mark .brand-logo__mark {
+      width: 36px;
+      height: 36px;
     }
 
     .brand-logo__wordmark {
-      font-family: 'Lilita One', cursive;
+      font-family: var(--display);
       font-size: 2rem;
       font-weight: 400;
       white-space: nowrap;
     }
 
+    .brand-logo--large {
+      gap: 0.9rem;
+    }
+
+    .brand-logo--large .brand-logo__mark {
+      width: 60px;
+      height: 60px;
+    }
+
     .brand-logo--large .brand-logo__wordmark {
-      font-size: clamp(3rem, 8vw, 4rem);
+      font-size: clamp(2.25rem, 4vw, 2.75rem);
     }
 
-    .hero-name {
-      font-family: 'Lilita One', cursive;
-      font-size: clamp(2.5rem, 10vw, 5rem);
-      font-weight: 400;
-      color: var(--pink);
-      letter-spacing: 0.01em;
-      margin-bottom: 0.5rem;
-      line-height: 1.1;
+    .page-shell {
+      padding: 1.5rem;
+      background: var(--paper);
     }
 
-    .hero-tagline {
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 2.5rem;
-      max-width: 400px;
-      letter-spacing: 0.02em;
+    .hero-card {
+      position: relative;
+      min-height: min(720px, calc(100vh - 3rem));
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 2.25rem 2.5rem 2.5rem;
+      overflow: hidden;
+      background: var(--sky);
+      border: var(--border);
+      border-radius: 28px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hero-header {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
     }
 
     .hero-nav {
       display: flex;
-      gap: 2rem;
-      flex-wrap: wrap;
-      justify-content: center;
+      align-items: center;
+      gap: clamp(1.25rem, 3vw, 2.5rem);
     }
 
     .hero-nav a {
-      color: var(--ink);
-      text-decoration: none;
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 700;
-      letter-spacing: 0.02em;
-      padding: 0.4rem 1.25rem;
-      border: 2.5px solid var(--ink);
-      border-radius: 100px;
-      background: var(--paper);
-      box-shadow: 3px 3px 0 var(--ink);
-      transition: background 0.15s, color 0.15s, box-shadow 0.15s, transform 0.15s;
+      text-decoration: none;
+      text-underline-offset: 0.35rem;
     }
 
     .hero-nav a:hover {
-      background: var(--pink);
-      color: var(--ink);
-      box-shadow: 1px 1px 0 var(--ink);
-      transform: translate(2px, 2px);
+      text-decoration: underline;
+      text-decoration-thickness: 3px;
     }
 
-    /* ── Sections ── */
-    .section {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 6rem 2rem;
-    }
-
-    .section-label {
-      display: inline-block;
-      font-size: 0.8125rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      background: var(--pink);
-      color: var(--ink);
-      border: 2px solid var(--ink);
-      border-radius: 100px;
-      padding: 0.2rem 0.875rem;
-      margin-bottom: 1rem;
-      box-shadow: 2px 2px 0 var(--ink);
-    }
-
-    .section-title {
-      font-family: 'Lilita One', cursive;
-      font-size: clamp(1.75rem, 4vw, 2.5rem);
-      font-weight: 400;
-      color: var(--ink);
-      margin-bottom: 1rem;
-      line-height: 1.15;
-    }
-
-    .section-text {
-      color: var(--ink);
-      font-size: 1.05rem;
-      line-height: 1.8;
-      max-width: 600px;
-    }
-
-    .divider {
-      max-width: 100%;
-      margin: 0;
-      border: none;
-      border-top: 3px solid var(--ink);
-    }
-
-    /* ── Products ── */
-    .product-card {
-      background: var(--paper);
-      border: 3px solid var(--ink);
-      border-radius: 20px;
-      padding: 2rem;
-      margin-top: 2rem;
-      box-shadow: 6px 6px 0 var(--ink);
-    }
-
-    .product-header {
-      display: flex;
+    .hero-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr);
       align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 1rem;
+      min-height: 540px;
+      gap: clamp(2rem, 4vw, 4rem);
     }
 
-    .product-name {
-      font-family: 'Lilita One', cursive;
-      font-size: 1.375rem;
-      font-weight: 400;
-      color: var(--ink);
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      padding: 3rem 0 1.5rem;
     }
 
-    .product-logo {
-      width: 40px;
-      height: 40px;
-      flex-shrink: 0;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .product-logo svg {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-
-    .product-status {
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      padding: 0.25rem 0.75rem;
-      border-radius: 100px;
+    .eyebrow,
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      width: max-content;
+      min-height: 32px;
+      padding: 0.25rem 0.85rem;
       border: 2px solid var(--ink);
+      border-radius: 999px;
       box-shadow: 2px 2px 0 var(--ink);
-    }
-
-    .product-status.status-live {
-      background: var(--sun);
+      background: var(--paper);
       color: var(--ink);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.11em;
+      line-height: 1;
+      text-transform: uppercase;
     }
 
-    .product-status.status-dev {
-      background: var(--mint);
-      color: var(--ink);
+    .hero-title {
+      max-width: 680px;
+      margin-top: 1.25rem;
+      color: var(--paper);
+      font-family: var(--display);
+      font-size: clamp(3.75rem, 7vw, 5.5rem);
+      font-weight: 400;
+      letter-spacing: -0.015em;
+      line-height: 0.96;
     }
 
-    .endorsement {
+    .hero-intro {
+      max-width: 630px;
+      margin-top: 1.5rem;
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      font-weight: 500;
+      line-height: 1.55;
+    }
+
+    .button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.625rem;
-      width: max-content;
-      min-height: 56px;
-      margin-left: auto;
-      padding: 0.75rem 1rem;
-      border: 2px solid var(--ink);
+      min-height: 54px;
+      margin-top: 1.75rem;
+      padding: 0.75rem 1.35rem;
+      border: var(--border);
       border-radius: 16px;
-      box-shadow: 3px 3px 0 var(--ink);
+      box-shadow: 4px 4px 0 var(--ink);
+      background: var(--pink);
       color: var(--ink);
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: box-shadow 120ms ease, transform 120ms ease, background 120ms ease;
     }
 
-    .endorsement--paper {
-      background: var(--paper);
+    .button:hover,
+    .button:active {
+      box-shadow: 1px 1px 0 var(--ink);
+      transform: translate(3px, 3px);
     }
 
-    .endorsement--sun {
+    .button:hover {
       background: var(--sun);
     }
 
-    .endorsement__label {
-      font-family: 'Space Grotesk', 'Nunito', system-ui, sans-serif;
-      font-size: 0.75rem;
-      font-weight: 700;
-      line-height: 1;
-      white-space: nowrap;
+    .product-constellation {
+      position: relative;
+      min-height: 480px;
+      isolation: isolate;
     }
 
-    .product-link {
-      display: inline-block;
-      margin-top: 1.25rem;
-      color: var(--pink);
-      text-decoration: none;
-      font-size: 1rem;
-      font-weight: 700;
-      transition: color 0.2s;
+    .constellation-rails {
+      position: absolute;
+      z-index: -1;
+      inset: 8% -2% auto auto;
+      width: min(100%, 470px);
+      height: auto;
     }
 
-    .product-link:hover {
+    .product-emblem {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 88px;
+      height: 88px;
+      flex: 0 0 auto;
+      overflow: hidden;
+      border: var(--border);
+      border-radius: 22px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .product-emblem img {
+      width: 58%;
+      height: 58%;
+    }
+
+    .product-emblem--constellation {
+      position: static;
+      width: 112px;
+      height: 112px;
+      border-radius: 24px;
+    }
+
+    .constellation-item {
+      position: absolute;
+      display: block;
+      line-height: 0;
+    }
+
+    .product-emblem--field {
+      background: var(--field);
+    }
+
+    .product-emblem--clay {
+      background: var(--clay);
+    }
+
+    .product-emblem--violet {
+      background: var(--violet);
+    }
+
+    .product-emblem--sun {
+      background: var(--sun);
+    }
+
+    .constellation-item:nth-of-type(1) {
+      top: 3%;
+      left: 8%;
+      transform: rotate(-4deg);
+    }
+
+    .constellation-item:nth-of-type(2) {
+      top: 9%;
+      right: 3%;
+      transform: rotate(3deg);
+    }
+
+    .constellation-item:nth-of-type(3) {
+      bottom: 5%;
+      left: 15%;
+      transform: rotate(3deg);
+    }
+
+    .constellation-item:nth-of-type(4) {
+      right: 0;
+      bottom: 1%;
+      transform: rotate(-3deg);
+    }
+
+    .play-note {
+      position: absolute;
+      z-index: 2;
+      top: 43%;
+      left: 27%;
+      padding: 0.85rem 1.15rem;
+      background: var(--sun);
+      border: var(--border);
+      border-radius: 12px;
+      box-shadow: var(--shadow-sm);
+      font-family: var(--display);
+      font-size: 1.1rem;
+      letter-spacing: 0.035em;
+      transform: rotate(-7deg);
+    }
+
+    .section {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: clamp(5rem, 9vw, 8rem) 1.5rem;
+      scroll-margin-top: 1rem;
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(300px, 0.62fr);
+      align-items: end;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      margin-top: 1rem;
+      font-family: var(--display);
+      font-size: clamp(2.75rem, 6vw, 4.75rem);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      line-height: 0.98;
+    }
+
+    .section-lede {
+      max-width: 560px;
+      font-size: clamp(1rem, 1.8vw, 1.15rem);
+      line-height: 1.7;
+    }
+
+    .products-section {
+      background: var(--paper);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(1.5rem, 3vw, 2.25rem);
+    }
+
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 500px;
+      padding: clamp(1.5rem, 3vw, 2rem);
+      border: var(--border);
+      border-radius: 20px;
+      box-shadow: 6px 6px 0 var(--ink);
+      transition: box-shadow 160ms ease, transform 160ms ease;
+    }
+
+    .product-card:hover {
+      box-shadow: 3px 3px 0 var(--ink);
+      transform: translate(3px, 3px);
+    }
+
+    .product-card--field {
+      background: var(--field);
+      color: var(--paper);
+    }
+
+    .product-card--clay {
+      background: var(--clay);
       color: var(--ink);
-      text-decoration: underline;
+    }
+
+    .product-card--violet {
+      background: var(--violet);
+      color: var(--paper);
+    }
+
+    .product-card--sun {
+      background: var(--sun);
+      color: var(--ink);
+    }
+
+    .product-card__topline {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .product-status {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 0.25rem 0.75rem;
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      border-radius: 999px;
+      box-shadow: 2px 2px 0 var(--ink);
+      color: var(--ink);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .product-name {
+      margin-top: 1.5rem;
+      font-family: var(--display);
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 400;
+      line-height: 1;
     }
 
     .product-description {
-      color: var(--ink);
-      margin-bottom: 1.25rem;
-      line-height: 1.7;
+      max-width: 50ch;
+      margin-top: 1rem;
+      font-size: 1rem;
+      line-height: 1.65;
     }
 
     .product-features {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 0.5rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.65rem 1rem;
+      margin-top: 1.5rem;
+      padding: 0;
       list-style: none;
-      padding-left: 0;
     }
 
     .product-feature {
-      color: var(--ink);
-      font-size: 1rem;
-      padding-left: 1.25rem;
       position: relative;
+      padding-left: 1.15rem;
+      font-size: 0.88rem;
+      line-height: 1.45;
     }
 
     .product-feature::before {
       content: '';
       position: absolute;
+      top: 0.45em;
       left: 0;
-      top: 0.5em;
-      width: 7px;
-      height: 7px;
+      width: 8px;
+      height: 8px;
+      border: 1.5px solid var(--ink);
       border-radius: 3px;
       background: var(--pink);
-      border: 1.5px solid var(--ink);
     }
 
-    /* ── About ── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .tenet-card {
-      background: var(--paper);
-      border: 3px solid var(--ink);
-      border-radius: 16px;
-      padding: 2rem;
-      box-shadow: 5px 5px 0 var(--ink);
-    }
-
-    .tenet-title {
-      font-family: 'Lilita One', cursive;
-      font-size: 1.5rem;
-      font-weight: 400;
-      color: var(--pink);
-      margin-bottom: 0.75rem;
-      text-shadow: 2px 2px 0 var(--ink);
-    }
-
-    .tenet-text {
-      color: var(--ink);
-      font-size: 1rem;
-      line-height: 1.7;
-    }
-
-    /* ── Contact ── */
-    .contact-link {
-      display: inline-block;
-      font-family: 'Lilita One', cursive;
-      background: var(--pink);
-      color: var(--ink);
-      text-decoration: none;
-      font-size: 1.25rem;
-      font-weight: 400;
-      margin-top: 1.5rem;
-      padding: 0.6rem 1.5rem;
-      border: 3px solid var(--ink);
-      border-radius: 100px;
-      box-shadow: 4px 4px 0 var(--ink);
-      transition: box-shadow 0.15s, transform 0.15s;
-    }
-
-    .contact-link:hover {
-      box-shadow: 1px 1px 0 var(--ink);
-      transform: translate(3px, 3px);
-    }
-
-    /* ── Footer ── */
-    .footer {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 3rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.875rem;
-      color: var(--ink);
-      font-weight: 600;
-    }
-
-    .footer-brand {
+    .product-card__action {
       display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
+      align-self: flex-start;
+      min-height: 46px;
+      margin-top: auto;
+      padding: 0.65rem 1rem;
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      border-radius: 12px;
+      box-shadow: var(--shadow-sm);
+      color: var(--ink);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: box-shadow 120ms ease, transform 120ms ease;
     }
 
-    .footer-brand__copyright {
+    .product-card__action:hover,
+    .product-card__action:active {
+      box-shadow: 1px 1px 0 var(--ink);
+      transform: translate(2px, 2px);
+    }
+
+    .about-wrap {
+      position: relative;
+      overflow: hidden;
+      background: var(--sun);
+      border-block: var(--border);
+    }
+
+    .about-wrap::after {
+      content: '';
+      position: absolute;
+      right: -3rem;
+      bottom: -2rem;
+      width: 420px;
+      height: 230px;
+      opacity: 0.5;
+      background-image: radial-gradient(circle, rgb(17 17 17 / 16%) 1.5px, transparent 1.7px);
+      background-size: 18px 18px;
+      transform: rotate(8deg);
+      pointer-events: none;
+    }
+
+    .about-wrap .section {
+      z-index: 1;
+    }
+
+    .about-positioning {
+      max-width: 880px;
+      margin-bottom: 3rem;
+      font-family: var(--display);
+      font-size: clamp(2rem, 4.5vw, 3.75rem);
+      font-weight: 400;
+      line-height: 1.05;
+    }
+
+    .principle-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .principle-card {
+      grid-column: span 2;
+      min-height: 230px;
+      padding: 1.5rem;
+      background: var(--paper);
+      border: var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .principle-card:nth-child(1) {
+      border-color: var(--field);
+    }
+
+    .principle-card:nth-child(2) {
+      border-color: var(--clay);
+    }
+
+    .principle-card:nth-child(3) {
+      border-color: var(--violet);
+    }
+
+    .principle-card:nth-child(4),
+    .principle-card:nth-child(5) {
+      grid-column: span 3;
+    }
+
+    .principle-card:nth-child(4) {
+      border-color: var(--pink);
+    }
+
+    .principle-card:nth-child(5) {
+      border-color: var(--sky);
+    }
+
+    .principle-number {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+    }
+
+    .principle-title {
+      margin-top: 1.75rem;
+      font-family: var(--display);
+      font-size: 1.5rem;
+      font-weight: 400;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .principle-text {
+      margin-top: 0.8rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .signature {
+      display: inline-block;
+      margin-top: 3rem;
+      padding: 0.55rem 1rem;
+      background: var(--pink);
+      border: var(--border);
+      border-radius: 10px;
+      box-shadow: var(--shadow-sm);
+      font-family: var(--display);
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
+      letter-spacing: 0.04em;
+      transform: rotate(-2deg);
+    }
+
+    .contact-section {
+      padding-bottom: clamp(5rem, 10vw, 9rem);
+    }
+
+    .contact-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 2rem;
+      padding: clamp(2rem, 5vw, 4rem);
+      background: var(--sky);
+      border: var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .contact-title {
+      font-family: var(--display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .contact-text {
+      max-width: 580px;
+      margin-top: 1rem;
+      font-size: 1.05rem;
+    }
+
+    .contact-card .button {
+      margin-top: 0;
       white-space: nowrap;
     }
 
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+      border-top: 3px solid var(--ink);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .footer-brand,
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .footer-links {
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
     .footer a {
-      color: var(--ink);
-      text-decoration: none;
       font-weight: 700;
-      transition: color 0.2s;
+      text-decoration: none;
+      text-underline-offset: 0.25rem;
     }
 
     .footer a:hover {
-      color: var(--pink);
+      color: var(--violet);
       text-decoration: underline;
     }
 
-    /* ── Skip link ── */
-    .skip-link {
-      position: absolute;
-      top: -100%;
-      left: 1rem;
-      padding: 0.75rem 1.25rem;
-      background: var(--sun);
-      color: var(--ink);
-      font-weight: 700;
-      font-size: 0.9rem;
-      text-decoration: none;
-      border-radius: 0 0 8px 8px;
-      z-index: 9999;
-      transition: top 0.15s;
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-copy {
+        animation: reveal 420ms 100ms both ease-out;
+      }
+
+      .constellation-item {
+        animation: assemble 320ms both cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+
+      .constellation-item:nth-of-type(2) {
+        animation-delay: 80ms;
+      }
+
+      .constellation-item:nth-of-type(3) {
+        animation-delay: 160ms;
+      }
+
+      .constellation-item:nth-of-type(4) {
+        animation-delay: 240ms;
+      }
+
+      @keyframes reveal {
+        from {
+          opacity: 0;
+          transform: translateY(18px);
+        }
+      }
+
+      @keyframes assemble {
+        from {
+          opacity: 0;
+          translate: 0 18px;
+          scale: 0.86;
+        }
+      }
     }
 
-    .skip-link:focus {
-      top: 0;
-    }
+    @media (max-width: 900px) {
+      .hero-card {
+        min-height: auto;
+      }
 
-    /* ── Focus styles ── */
-    :focus-visible {
-      outline: 3px solid var(--sun);
-      outline-offset: 3px;
-      border-radius: 3px;
-    }
-
-    /* ── Mobile ── */
-    @media (max-width: 640px) {
-      .about-grid {
+      .hero-layout,
+      .section-heading {
         grid-template-columns: 1fr;
       }
 
-      .hero-nav {
-        gap: 0.75rem;
+      .hero-layout {
+        gap: 0;
       }
 
-      .brand-logo--large.brand-logo--horizontal {
-        gap: 0.75rem;
+      .hero-copy {
+        padding-top: 4rem;
+      }
+
+      .product-constellation {
+        width: min(100%, 540px);
+        min-height: 430px;
+        margin: 0 auto;
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-card {
+        min-height: 460px;
+      }
+
+      .principle-card,
+      .principle-card:nth-child(4),
+      .principle-card:nth-child(5) {
+        grid-column: span 3;
+      }
+
+      .principle-card:last-child {
+        grid-column: 2 / span 4;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-shell {
+        padding: 0.75rem;
+      }
+
+      .hero-card {
+        padding: 1.25rem;
+        border-radius: 20px;
+        box-shadow: 5px 5px 0 var(--ink);
+      }
+
+      .hero-header {
+        align-items: flex-start;
       }
 
       .brand-logo--large .brand-logo__mark {
-        width: 64px;
-        height: 64px;
+        width: 48px;
+        height: 48px;
       }
 
       .brand-logo--large .brand-logo__wordmark {
-        font-size: clamp(2.5rem, 13vw, 3.25rem);
+        font-size: 2rem;
       }
 
-      .endorsement {
-        margin-left: 0;
+      .hero-nav {
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.4rem;
+      }
+
+      .hero-title {
+        font-size: clamp(3.25rem, 16vw, 4.25rem);
+      }
+
+      .product-constellation {
+        min-height: 340px;
+      }
+
+      .product-emblem--constellation {
+        width: 82px;
+        height: 82px;
+        border-radius: 18px;
+        box-shadow: 4px 4px 0 var(--ink);
+      }
+
+      .play-note {
+        left: 22%;
+        font-size: 0.9rem;
+      }
+
+      .section {
+        padding-inline: 1.25rem;
+      }
+
+      .section-heading {
+        margin-bottom: 2rem;
+      }
+
+      .product-card {
+        min-height: 0;
+      }
+
+      .product-card__action {
+        margin-top: 2rem;
+      }
+
+      .product-features {
+        grid-template-columns: 1fr;
+      }
+
+      .principle-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .principle-card,
+      .principle-card:nth-child(4),
+      .principle-card:nth-child(5),
+      .principle-card:last-child {
+        grid-column: auto;
+      }
+
+      .principle-card {
+        min-height: 0;
+      }
+
+      .contact-card {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-card .button {
+        justify-self: start;
       }
 
       .footer {
         flex-direction: column;
-        gap: 0.5rem;
-        text-align: center;
+        align-items: flex-start;
       }
 
-      .product-card,
-      .tenet-card {
-        box-shadow: 4px 4px 0 var(--ink);
+      .footer-links {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
       }
     }
   </style>
 </head>
 
 <body>
-
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <main id="main-content">
+    <div class="page-shell">
+      <section class="hero-card" aria-labelledby="hero-heading">
+        <header class="hero-header">
+          <a href="#main-content" aria-label="{{ site.title }} home">
+            {% include logo.html format="horizontal" size="large" label=site.title %}
+          </a>
+          <nav class="hero-nav" aria-label="Main navigation">
+            <a href="#products">Products</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </header>
 
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero-brand">
-        {% include logo.html format="horizontal" size="large" label=site.title %}
+        <div class="hero-layout">
+          <div class="hero-copy">
+            <p class="eyebrow">Independent product studio</p>
+            <h1 id="hero-heading" class="hero-title">Useful software,<br>made with imagination.</h1>
+            <p class="hero-intro">An independent product studio making practical tools for real work—and room to play.</p>
+            <a class="button" href="#products">Explore products <span aria-hidden="true">→</span></a>
+          </div>
+
+          <div class="product-constellation" aria-label="The Onobumba product family">
+            <img class="constellation-rails" src="{{ '/assets/brand/product-rails.svg' | relative_url }}" alt="">
+            <span class="constellation-item">
+              {% include product-emblem.html name="LandSteward" logo="landsteward" tone="field" size="constellation" %}
+            </span>
+            <span class="constellation-item">
+              {% include product-emblem.html name="eKhaya" logo="ekhaya" tone="clay" size="constellation" %}
+            </span>
+            <span class="constellation-item">
+              {% include product-emblem.html name="Imvuzo" logo="imvuzo" tone="violet" size="constellation" %}
+            </span>
+            <span class="constellation-item">
+              {% include product-emblem.html name="Marabaraba" logo="marabaraba" tone="sun" size="constellation" %}
+            </span>
+            <span class="play-note">{{ site.company.mission | upcase }}</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section id="products" class="section products-section" aria-labelledby="products-heading">
+      <div class="section-heading">
+        <div>
+          <p class="section-label">Our products</p>
+          <h2 id="products-heading" class="section-title">One family.<br>Many useful voices.</h2>
+        </div>
+        <p class="section-lede">From farm planning and hospitality to payroll and play, each product is shaped around a clear job and a distinct audience.</p>
       </div>
-      <h1 class="hero-name visually-hidden">{{ site.title }}</h1>
-      <p class="hero-tagline">{{ site.company.tagline }}</p>
-      <nav class="hero-nav" aria-label="Main">
-        <a href="#products">Products</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </section>
 
-    <!-- Products -->
-    <hr class="divider">
-    <section id="products" class="section" aria-labelledby="products-heading">
-      <h2 id="products-heading" class="section-label">Products</h2>
-
-      {%- for product in site.products -%}
-      <div class="product-card">
-        <div class="product-header">
-          {%- if product.logo == "landsteward" -%}
-          <div class="product-logo" aria-hidden="true">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none">
-              <rect width="40" height="40" rx="9" fill="#15803d" />
-              <path
-                d="M 20 33 L 20 27 C 22 26.5, 25 25, 26.5 23 C 28 21, 28 19.5, 26.5 18 C 28.5 17.5, 30 15.5, 29 13 C 28 10.5, 25.5 10, 24 12 C 23.5 10.5, 22.5 8, 21 7 C 20.5 6.6, 20 7, 20 7 C 20 7, 19.5 6.6, 19 7 C 17.5 8, 16.5 10.5, 16 12 C 14.5 10, 12 10.5, 11 13 C 10 15.5, 11.5 17.5, 13.5 18 C 12 19.5, 12 21, 13.5 23 C 15 25, 18 26.5, 20 27 Z"
-                fill="white" />
-            </svg>
+      <div class="product-grid">
+        {%- for product in site.products -%}
+        <article class="product-card product-card--{{ product.tone }}">
+          <div class="product-card__topline">
+            {% include product-emblem.html name=product.name logo=product.logo tone=product.tone %}
+            <span class="product-status">{{ product.status }}</span>
           </div>
-          {%- elsif product.logo == "ekhaya" -%}
-          <div class="product-logo" aria-hidden="true">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
-              <rect width="48" height="48" rx="10" fill="hsl(21,60%,38%)" />
-              <path d="M24 8 L40 24 H8 Z" fill="hsl(20,100%,97%)" />
-              <path d="M8 24 L40 24 L38 27 H10 Z" fill="hsl(22,45%,16%)" />
-              <path d="M10 27 Q10 40 24 40 Q38 40 38 27 Z" fill="hsl(20,100%,97%)" />
-              <path d="M19 40 L19 35 Q24 30 29 35 L29 40 Z" fill="hsl(21,60%,38%)" />
-            </svg>
-          </div>
-          {%- endif -%}
           <h3 class="product-name">{{ product.name }}</h3>
-          {%- if product.status == "Live" -%}
-          <span class="product-status status-live">{{ product.status }}</span>
-          {%- else -%}
-          <span class="product-status status-dev">{{ product.status }}</span>
+          <p class="product-description">{{ product.description }}</p>
+          <ul class="product-features">
+            {%- for feature in product.features -%}
+            <li class="product-feature">{{ feature }}</li>
+            {%- endfor -%}
+          </ul>
+          {%- if product.url -%}
+            {%- if product.url contains 'http' -%}
+            <a href="{{ product.url }}" class="product-card__action" target="_blank" rel="noopener" aria-label="Explore {{ product.name }} (opens in a new tab)">Explore {{ product.name }} <span aria-hidden="true">↗</span></a>
+            {%- else -%}
+            <a href="{{ product.url | relative_url }}" class="product-card__action">Explore {{ product.name }} <span aria-hidden="true">→</span></a>
+            {%- endif -%}
           {%- endif -%}
-          {% include endorsement.html tone="paper" %}
-        </div>
-        <p class="product-description">{{ product.description }}</p>
-        <ul class="product-features">
-          {%- for feature in product.features -%}
-          <li class="product-feature">{{ feature }}</li>
-          {%- endfor -%}
-        </ul>
-        {%- if product.url -%}
-        <a href="{{ product.url }}" class="product-link" target="_blank" rel="noopener"
-          aria-label="Visit {{ product.name }} (opens in new tab)">Visit {{ product.name }} →</a>
-        {%- endif -%}
-      </div>
-      {%- endfor -%}
-    </section>
-
-    <!-- About -->
-    <hr class="divider">
-    <section id="about" class="section" aria-labelledby="about-heading">
-      <h2 id="about-heading" class="section-label">About</h2>
-      <div class="about-grid">
-        <div class="tenet-card">
-          <h3 class="tenet-title">Imagine</h3>
-          <p class="tenet-text">There's always a better way to do something. We like finding it.</p>
-        </div>
-        <div class="tenet-card">
-          <h3 class="tenet-title">Build</h3>
-          <p class="tenet-text">Making things is how we think. Software is just the medium.</p>
-        </div>
-        <div class="tenet-card">
-          <h3 class="tenet-title">Play</h3>
-          <p class="tenet-text">Not everything needs to be serious. Some of the best ideas come from having fun.</p>
-        </div>
+        </article>
+        {%- endfor -%}
       </div>
     </section>
 
-    <!-- Contact -->
-    <hr class="divider">
-    <section id="contact" class="section" aria-labelledby="contact-heading">
-      <p class="section-label">Contact</p>
-      <h2 id="contact-heading" class="section-title">Get in touch</h2>
-      <p class="section-text">
-        Got a question, idea, or just want to say hello?
-      </p>
-      <a href="mailto:{{ site.email }}" class="contact-link">{{ site.email }} →</a>
-    </section>
+    <div id="about" class="about-wrap">
+      <section class="section" aria-labelledby="about-heading">
+        <p class="section-label">Useful play</p>
+        <h2 id="about-heading" class="about-positioning">An independent product studio making useful software with imagination and play.</h2>
 
+        <div class="principle-grid">
+          <article class="principle-card">
+            <span class="principle-number">01</span>
+            <h3 class="principle-title">Useful first</h3>
+            <p class="principle-text">We explain the practical value before the cleverness.</p>
+          </article>
+          <article class="principle-card">
+            <span class="principle-number">02</span>
+            <h3 class="principle-title">Play with purpose</h3>
+            <p class="principle-text">Every expressive move supports meaning or behaviour.</p>
+          </article>
+          <article class="principle-card">
+            <span class="principle-number">03</span>
+            <h3 class="principle-title">Show the making</h3>
+            <p class="principle-text">Pieces, connectors and visible assembly reveal the thought behind the work.</p>
+          </article>
+          <article class="principle-card">
+            <span class="principle-number">04</span>
+            <h3 class="principle-title">One family, many voices</h3>
+            <p class="principle-text">Products share a strong structure while varying their colour, tone and degree of play.</p>
+          </article>
+          <article class="principle-card">
+            <span class="principle-number">05</span>
+            <h3 class="principle-title">Culture through authorship</h3>
+            <p class="principle-text">Specific stories and points of view matter more than decorative shorthand.</p>
+          </article>
+        </div>
+
+        <p class="signature">{{ site.company.tagline | upcase }}</p>
+      </section>
+    </div>
+
+    <section id="contact" class="section contact-section" aria-labelledby="contact-heading">
+      <div class="contact-card">
+        <div>
+          <p class="section-label">Say hello</p>
+          <h2 id="contact-heading" class="contact-title">Have something useful in mind?</h2>
+          <p class="contact-text">Whether it is a question, an idea, or simply a hello, we would like to hear it.</p>
+        </div>
+        <a href="mailto:{{ site.email }}" class="button">{{ site.email }} <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
   </main>
 
-  <!-- Footer -->
-  <hr class="divider">
   <footer class="footer">
     <span class="footer-brand">
       {% include logo.html format="mark" size="small" %}
-      <span class="footer-brand__copyright">&copy; {{ "now" | date: "%Y" }} {{ site.title }}</span>
+      <span>&copy; {{ "now" | date: "%Y" }} {{ site.title }}</span>
     </span>
-    <span>
+    <span class="footer-links">
       <a href="/marabaraba/support/">Marabaraba Support</a>
-      &nbsp;&middot;&nbsp;
+      <span aria-hidden="true">·</span>
       <a href="/privacy/">Privacy</a>
     </span>
   </footer>
-
 </body>
 
 </html>

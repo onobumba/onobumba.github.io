@@ -1,0 +1,6 @@
+{%- assign emblem_name = include.name | default: "Product" -%}
+{%- assign emblem_tone = include.tone | default: "field" -%}
+{%- assign emblem_size = include.size | default: "standard" -%}
+<span class="product-emblem product-emblem--{{ emblem_tone }} product-emblem--{{ emblem_size }}" role="img" aria-label="{{ emblem_name }} emblem">
+  <img src="{{ '/assets/brand/product-' | append: include.logo | append: '.svg' | relative_url }}" alt="">
+</span>
