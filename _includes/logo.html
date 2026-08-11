@@ -1,0 +1,15 @@
+{%- assign logo_format = include.format | default: "horizontal" -%}
+{%- assign logo_size = include.size | default: "small" -%}
+<span class="brand-logo brand-logo--{{ logo_format }} brand-logo--{{ logo_size }}"{% if include.label %} role="img" aria-label="{{ include.label }}"{% else %} aria-hidden="true"{% endif %}>
+  {%- unless logo_format == "wordmark" -%}
+    {%- if logo_size == "large" -%}
+      {%- assign logo_asset = '/assets/brand/built-o.svg' -%}
+    {%- else -%}
+      {%- assign logo_asset = '/assets/brand/essential-o.svg' -%}
+    {%- endif -%}
+  <img class="brand-logo__mark" src="{{ logo_asset | relative_url }}" alt="">
+  {%- endunless -%}
+  {%- unless logo_format == "mark" -%}
+  <span class="brand-logo__wordmark">{{ site.title }}</span>
+  {%- endunless -%}
+</span>
