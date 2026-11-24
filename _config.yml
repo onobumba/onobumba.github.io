@@ -46,7 +46,7 @@ products:
 
   - name: "eKhaya"
     description: "All-in-one property management system for South African hotels and guesthouses. Simpler and more affordable than the alternatives."
-    status: "Dev"
+    status: "In Development"
     url: "https://ekhaya.app"
     logo: "ekhaya"
     tone: "clay"
